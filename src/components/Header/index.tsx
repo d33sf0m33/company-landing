@@ -22,11 +22,43 @@ const Header = () => {
       setSticky(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNavbar);
-  });
+    return () => window.removeEventListener("scroll", handleStickyNavbar);
+  }, []);
 
   const usePathName = usePathname();
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    path: string,
+  ) => {
+    setNavbarOpen(false);
+
+    if (!path.startsWith("/#") || usePathName !== "/") {
+      return;
+    }
+
+    const targetId = path.slice(2);
+    const target = document.getElementById(targetId);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const header = document.querySelector("header");
+    const headerOffset = header instanceof HTMLElement ? header.offsetHeight : 0;
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset - 16;
+
+    window.history.replaceState(null, "", path);
+    window.scrollTo({
+      top: Math.max(targetTop, 0),
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -99,11 +131,8 @@ const Header = () => {
                       <li key={index}>
                         <Link
                           href={menuItem.path}
-                          className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                            usePathName === menuItem.path
-                              ? "text-primary dark:text-white"
-                              : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          }`}
+                          onClick={(event) => handleNavClick(event, menuItem.path)}
+                          className="text-dark hover:text-primary flex py-2 lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 dark:text-white/70 dark:hover:text-white"
                         >
                           {menuItem.title}
                         </Link>
