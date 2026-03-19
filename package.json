@@ -6,17 +6,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "studio": "sanity dev",
+    "sanity:seed": "node ./scripts/seed-sanity.mjs",
+    "sanity:migrate:multi-company": "node ./scripts/migrate-sanity-multi-company.mjs"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.2.0",
     "@tailwindcss/postcss": "^4.1.3",
     "eslint": "^9.24.0",
     "eslint-config-next": "15.1.6",
     "next": "16.0.10",
+    "next-sanity": "^11.6.9",
     "next-themes": "^0.2.1",
     "postcss": "^8.5.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "sanity": "^4.22.0",
+    "styled-components": "^6.3.12",
     "tailwindcss": "^4.1.3"
   },
   "devDependencies": {
