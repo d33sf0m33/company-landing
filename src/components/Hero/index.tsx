@@ -1,6 +1,29 @@
+"use client";
+
 import Link from "next/link";
 
 const Hero = () => {
+  const handleContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const target = document.getElementById("contact");
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const header = document.querySelector("header");
+    const headerOffset = header instanceof HTMLElement ? header.offsetHeight : 0;
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset - 16;
+
+    window.history.replaceState(null, "", "/#contact");
+    window.scrollTo({
+      top: Math.max(targetTop, 0),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <section
@@ -22,7 +45,8 @@ const Hero = () => {
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
-                    href="#contact"
+                    href="/#contact"
+                    onClick={handleContactClick}
                     className="rounded-xs bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
                   >
                     Submit a Request
