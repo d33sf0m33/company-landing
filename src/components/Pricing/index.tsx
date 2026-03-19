@@ -13,7 +13,6 @@ const Pricing = () => {
           center
           width="665px"
         />
-
         <div className="mx-auto max-w-4xl rounded-xs bg-white px-6 py-8 shadow-three dark:bg-gray-dark sm:px-8 sm:py-10">
           <div className="border-body-color/10 mb-6 hidden grid-cols-[1fr_auto] border-b pb-4 text-sm font-semibold tracking-[0.08em] text-body-color uppercase dark:border-white/10 sm:grid">
             <span>{siteContent.pricing.labels.service}</span>
