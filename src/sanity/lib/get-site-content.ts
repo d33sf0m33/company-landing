@@ -38,6 +38,10 @@ type LandingPageQueryResult = {
   }>;
 };
 
+function buildMetaTitle(companyName: string): string {
+  return `${companyName} | Business Landing Page`;
+}
+
 function normalizeHostname(hostname: string): string {
   const firstValue = hostname.split(",")[0]?.trim() || "";
 
@@ -79,6 +83,7 @@ async function resolveCompany(): Promise<CompanyQueryResult | null> {
 }
 
 function mapSanityContent(data: LandingPageQueryResult): SiteContent {
+  const companyName = data.companyName || siteContent.company.name;
   const logoUrl = data.logo ? urlForImage(data.logo)?.width(280).url() : null;
   const sanityFeatures =
     data.features
@@ -99,7 +104,7 @@ function mapSanityContent(data: LandingPageQueryResult): SiteContent {
   return {
     ...siteContent,
     company: {
-      name: data.companyName || siteContent.company.name,
+      name: companyName,
       description: data.companyDescription || siteContent.company.description,
       logo: {
         src: logoUrl || siteContent.company.logo.src,
@@ -108,12 +113,12 @@ function mapSanityContent(data: LandingPageQueryResult): SiteContent {
     },
     hero: {
       ...siteContent.hero,
-      title: data.companyName || siteContent.hero.title,
+      title: companyName,
       description:
         data.companyDescription || siteContent.hero.description,
     },
     meta: {
-      title: data.companyName || siteContent.meta.title,
+      title: buildMetaTitle(companyName),
       description:
         data.companyDescription || siteContent.meta.description,
     },

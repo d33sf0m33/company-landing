@@ -19,7 +19,7 @@ export const siteContent: SiteContent & {
     },
   },
   meta: {
-    title: "Business Landing Page Template",
+    title: "Company Name | Business Landing Page",
     description:
       "A flexible landing page template for service businesses, studios, and digital companies.",
   },
