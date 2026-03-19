@@ -1,4 +1,3 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
 import Brands from "@/components/Brands";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
@@ -21,7 +20,6 @@ export default function Home() {
       <Hero />
       <Features />
       <Brands />
-      <AboutSectionOne />
       <Testimonials />
       <Pricing />
       <Contact />
