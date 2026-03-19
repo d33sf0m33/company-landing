@@ -1,9 +1,26 @@
+import { cache } from "react";
+import { headers } from "next/headers";
 import type { Image } from "sanity";
 import { siteContent } from "@/content/siteContent";
 import type { SiteContent } from "@/types/site-content";
 import { sanityClient } from "./client";
 import { urlForImage } from "./image";
-import { landingPageQuery } from "./queries";
+import {
+  companyByHostnameQuery,
+  defaultCompanyQuery,
+  landingPageByCompanyQuery,
+} from "./queries";
+
+type CompanyQueryResult = {
+  _id: string;
+  name?: string;
+  slug?: {
+    current?: string;
+  };
+  primaryDomain?: string;
+  domains?: string[];
+  isDefault?: boolean;
+};
 
 type LandingPageQueryResult = {
   companyName?: string;
@@ -20,6 +37,46 @@ type LandingPageQueryResult = {
     price?: string;
   }>;
 };
+
+function normalizeHostname(hostname: string): string {
+  const firstValue = hostname.split(",")[0]?.trim() || "";
+
+  return firstValue.replace(/:\d+$/, "").toLowerCase();
+}
+
+function isLocalHostname(hostname: string): boolean {
+  return (
+    hostname === "localhost" ||
+    hostname === "127.0.0.1" ||
+    hostname === "::1"
+  );
+}
+
+async function resolveCompany(): Promise<CompanyQueryResult | null> {
+  if (!sanityClient) {
+    return null;
+  }
+
+  const requestHeaders = await headers();
+  const forwardedHost = requestHeaders.get("x-forwarded-host");
+  const host = requestHeaders.get("host");
+  const hostname = normalizeHostname(forwardedHost || host || "");
+
+  if (!hostname || isLocalHostname(hostname)) {
+    return sanityClient.fetch<CompanyQueryResult | null>(defaultCompanyQuery);
+  }
+
+  const company = await sanityClient.fetch<CompanyQueryResult | null>(
+    companyByHostnameQuery,
+    { hostname },
+  );
+
+  if (company) {
+    return company;
+  }
+
+  return sanityClient.fetch<CompanyQueryResult | null>(defaultCompanyQuery);
+}
 
 function mapSanityContent(data: LandingPageQueryResult): SiteContent {
   const logoUrl = data.logo ? urlForImage(data.logo)?.width(280).url() : null;
@@ -55,6 +112,11 @@ function mapSanityContent(data: LandingPageQueryResult): SiteContent {
       description:
         data.companyDescription || siteContent.hero.description,
     },
+    meta: {
+      title: data.companyName || siteContent.meta.title,
+      description:
+        data.companyDescription || siteContent.meta.description,
+    },
     features: {
       ...siteContent.features,
       items:
@@ -69,13 +131,20 @@ function mapSanityContent(data: LandingPageQueryResult): SiteContent {
   };
 }
 
-export async function getSiteContent(): Promise<SiteContent> {
+export const getSiteContent = cache(async (): Promise<SiteContent> => {
   if (!sanityClient) {
     return siteContent;
   }
 
-  const data = await sanityClient.fetch<LandingPageQueryResult>(
-    landingPageQuery,
+  const company = await resolveCompany();
+
+  if (!company?._id) {
+    return siteContent;
+  }
+
+  const data = await sanityClient.fetch<LandingPageQueryResult | null>(
+    landingPageByCompanyQuery,
+    { companyId: company._id },
   );
 
   if (!data) {
@@ -83,4 +152,4 @@ export async function getSiteContent(): Promise<SiteContent> {
   }
 
   return mapSanityContent(data);
-}
+});

@@ -6,6 +6,13 @@ export const landingPageType = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "company",
+      title: "Company",
+      type: "reference",
+      to: [{ type: "company" }],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "companyName",
       title: "Company name",
       type: "string",
@@ -109,9 +116,14 @@ export const landingPageType = defineType({
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: "companyName",
+      subtitle: "company.name",
+    },
+    prepare({ title, subtitle }) {
       return {
-        title: "Landing page content",
+        title: title || "Landing page content",
+        subtitle: subtitle ? `Company: ${subtitle}` : "Company is not set",
       };
     },
   },

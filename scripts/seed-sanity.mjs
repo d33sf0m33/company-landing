@@ -86,10 +86,27 @@ async function uploadLogo() {
 
 async function seedLandingPage() {
   const logoAsset = await uploadLogo();
+  const companyDocument = {
+    _id: "company-default",
+    _type: "company",
+    name: siteContent.company.name,
+    slug: {
+      _type: "slug",
+      current: "default-company",
+    },
+    primaryDomain: "localhost",
+    domains: ["localhost", "127.0.0.1"],
+    isDefault: true,
+  };
+  const company = await client.createOrReplace(companyDocument);
 
   const document = {
     _id: "landingPage",
     _type: "landingPage",
+    company: {
+      _type: "reference",
+      _ref: company._id,
+    },
     companyName: siteContent.company.name,
     companyDescription: siteContent.company.description,
     logo: {
@@ -115,6 +132,7 @@ async function seedLandingPage() {
   const result = await client.createOrReplace(document);
 
   console.log("Seeded landing page document:", result._id);
+  console.log("Seeded company document:", company._id);
 }
 
 seedLandingPage().catch((error) => {
