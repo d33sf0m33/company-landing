@@ -125,10 +125,10 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/about"
+                      href="/#features"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      About
+                      Features
                     </Link>
                   </li>
                 </ul>
@@ -177,10 +177,10 @@ const Footer = () => {
                 <ul>
                   <li>
                     <Link
-                      href="/contact"
+                      href="/#contact"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      Open Support Ticket
+                      Contacts
                     </Link>
                   </li>
                   <li>
@@ -193,10 +193,10 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/about"
+                      href="/#features"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      About
+                      Features
                     </Link>
                   </li>
                 </ul>

@@ -1,102 +1,59 @@
-"use client";
-import { useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
-import OfferList from "./OfferList";
-import PricingBox from "./PricingBox";
+
+const services = [
+  { serviceName: "Landing Page Design", price: "$400" },
+  { serviceName: "Corporate Website", price: "$900" },
+  { serviceName: "UI/UX Audit", price: "$250" },
+  { serviceName: "Frontend Development", price: "$700" },
+  { serviceName: "Website Maintenance", price: "$180" },
+];
 
 const Pricing = () => {
-  const [isMonthly, setIsMonthly] = useState(true);
-
   return (
     <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
           title="Pricing"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          paragraph="Choose the service you need and send a request. We will confirm the scope, timing, and final estimate after reviewing your task."
           center
           width="665px"
         />
 
-        <div className="w-full">
-          <div className="mb-8 flex justify-center md:mb-12 lg:mb-16">
-            <span
-              onClick={() => setIsMonthly(true)}
-              className={`${
-                isMonthly
-                  ? "pointer-events-none text-primary"
-                  : "text-dark dark:text-white"
-              } mr-4 cursor-pointer text-base font-semibold`}
-            >
-              Monthly
-            </span>
-            <div
-              onClick={() => setIsMonthly(!isMonthly)}
-              className="flex cursor-pointer items-center"
-            >
-              <div className="relative">
-                <div className="h-5 w-14 rounded-full bg-[#1D2144] shadow-inner"></div>
-                <div
-                  className={`${
-                    isMonthly ? "" : "translate-x-full"
-                  } shadow-switch-1 absolute left-0 top-[-4px] flex h-7 w-7 items-center justify-center rounded-full bg-primary transition`}
-                >
-                  <span className="active h-4 w-4 rounded-full bg-white"></span>
+        <div className="mx-auto max-w-4xl rounded-xs bg-white px-6 py-8 shadow-three dark:bg-gray-dark sm:px-8 sm:py-10">
+          <div className="border-body-color/10 mb-6 hidden grid-cols-[1fr_auto] border-b pb-4 text-sm font-semibold tracking-[0.08em] text-body-color uppercase dark:border-white/10 sm:grid">
+            <span>Service</span>
+            <span>Price</span>
+          </div>
+
+          <div className="flex flex-col">
+            {services.map((service, index) => (
+              <div
+                key={service.serviceName}
+                className={`grid grid-cols-1 gap-2 py-5 sm:grid-cols-[1fr_auto] sm:items-center ${
+                  index !== services.length - 1
+                    ? "border-body-color/10 border-b dark:border-white/10"
+                    : ""
+                }`}
+              >
+                <div>
+                  <p className="mb-1 text-sm font-semibold tracking-[0.08em] text-body-color uppercase sm:hidden">
+                    Service
+                  </p>
+                  <h3 className="text-xl font-semibold text-black dark:text-white">
+                    {service.serviceName}
+                  </h3>
+                </div>
+                <div className="sm:text-right">
+                  <p className="mb-1 text-sm font-semibold tracking-[0.08em] text-body-color uppercase sm:hidden">
+                    Price
+                  </p>
+                  <p className="text-2xl font-bold text-primary">
+                    {service.price}
+                  </p>
                 </div>
               </div>
-            </div>
-            <span
-              onClick={() => setIsMonthly(false)}
-              className={`${
-                isMonthly
-                  ? "text-dark dark:text-white"
-                  : "pointer-events-none text-primary"
-              } ml-4 cursor-pointer text-base font-semibold`}
-            >
-              Yearly
-            </span>
+            ))}
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          <PricingBox
-            packageName="Lite"
-            price={isMonthly ? "40" : "120"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
-          >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="inactive" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
-          </PricingBox>
-          <PricingBox
-            packageName="Basic"
-            price={isMonthly ? "399" : "789"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
-          >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
-          </PricingBox>
-          <PricingBox
-            packageName="Plus"
-            price={isMonthly ? "589" : "999"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
-          >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="active" />
-          </PricingBox>
         </div>
       </div>
 
