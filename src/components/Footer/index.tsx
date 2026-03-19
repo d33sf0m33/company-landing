@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { siteContent } from "@/content/siteContent";
+import type { SiteContent } from "@/types/site-content";
 
-const Footer = () => {
+const Footer = ({ content }: { content: SiteContent }) => {
   return (
     <>
       <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
@@ -13,16 +13,9 @@ const Footer = () => {
               <div className="mb-12 max-w-[360px] lg:mb-16">
                 <Link href="/" className="mb-8 inline-block">
                   <Image
-                    src="/images/logo/logo-2.svg"
-                    alt="logo"
-                    className="w-full dark:hidden"
-                    width={140}
-                    height={30}
-                  />
-                  <Image
-                    src="/images/logo/logo.svg"
-                    alt="logo"
-                    className="hidden w-full dark:block"
+                    src={content.company.logo.src}
+                    alt={content.company.logo.alt}
+                    className="w-full"
                     width={140}
                     height={30}
                   />

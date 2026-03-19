@@ -1,28 +1,28 @@
+import type { SiteContent } from "@/types/site-content";
 import SectionTitle from "../Common/SectionTitle";
-import { siteContent } from "@/content/siteContent";
 
-const services = [...siteContent.pricing.items];
+const Pricing = ({ content }: { content: SiteContent }) => {
+  const services = [...content.pricing.items];
 
-const Pricing = () => {
   return (
     <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title={siteContent.pricing.title}
-          paragraph={siteContent.pricing.description}
+          title={content.pricing.title}
+          paragraph={content.pricing.description}
           center
           width="665px"
         />
         <div className="mx-auto max-w-4xl rounded-xs bg-white px-6 py-8 shadow-three dark:bg-gray-dark sm:px-8 sm:py-10">
           <div className="border-body-color/10 mb-6 hidden grid-cols-[1fr_auto] border-b pb-4 text-sm font-semibold tracking-[0.08em] text-body-color uppercase dark:border-white/10 sm:grid">
-            <span>{siteContent.pricing.labels.service}</span>
-            <span>{siteContent.pricing.labels.price}</span>
+            <span>{content.pricing.labels.service}</span>
+            <span>{content.pricing.labels.price}</span>
           </div>
 
           <div className="flex flex-col">
             {services.map((service, index) => (
               <div
-                key={service.serviceName}
+                key={`${service.name}-${index}`}
                 className={`grid grid-cols-1 gap-2 py-5 sm:grid-cols-[1fr_auto] sm:items-center ${
                   index !== services.length - 1
                     ? "border-body-color/10 border-b dark:border-white/10"
@@ -31,15 +31,15 @@ const Pricing = () => {
               >
                 <div>
                   <p className="mb-1 text-sm font-semibold tracking-[0.08em] text-body-color uppercase sm:hidden">
-                    {siteContent.pricing.labels.service}
+                    {content.pricing.labels.service}
                   </p>
                   <h3 className="text-xl font-semibold text-black dark:text-white">
-                    {service.serviceName}
+                    {service.name}
                   </h3>
                 </div>
                 <div className="sm:text-right">
                   <p className="mb-1 text-sm font-semibold tracking-[0.08em] text-body-color uppercase sm:hidden">
-                    {siteContent.pricing.labels.price}
+                    {content.pricing.labels.price}
                   </p>
                   <p className="text-2xl font-bold text-primary">
                     {service.price}

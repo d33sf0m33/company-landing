@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { siteContent } from "@/content/siteContent";
+import type { SiteContent } from "@/types/site-content";
 
-const Hero = () => {
+const Hero = ({ content }: { content: SiteContent }) => {
   const handleContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const target = document.getElementById("contact");
 
@@ -36,10 +36,10 @@ const Hero = () => {
             <div className="w-full px-4">
               <div className="mx-auto max-w-[800px] text-center">
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  {siteContent.company.name}
+                  {content.hero.title}
                 </h1>
                 <p className="mb-12 text-base leading-relaxed! text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  {siteContent.hero.description}
+                  {content.hero.description}
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
@@ -47,7 +47,7 @@ const Hero = () => {
                     onClick={handleContactClick}
                     className="rounded-xs bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
                   >
-                    {siteContent.hero.primaryCta}
+                    {content.hero.primaryCta}
                   </Link>
                 </div>
               </div>

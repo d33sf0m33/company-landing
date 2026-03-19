@@ -1,18 +1,20 @@
-"use client";
-
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
+import { getSiteContent } from "@/sanity/lib/get-site-content";
 import { Inter } from "next/font/google";
+import { Providers } from "./providers";
 import "../styles/index.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const content = await getSiteContent();
+
   return (
     <html suppressHydrationWarning lang="en">
       {/*
@@ -24,9 +26,9 @@ export default function RootLayout({
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
         <Providers>
           <div className="isolate">
-            <Header />
+            <Header logo={content.company.logo} />
             {children}
-            <Footer />
+            <Footer content={content} />
           </div>
           <ScrollToTop />
         </Providers>
@@ -34,6 +36,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-import { Providers } from "./providers";
-

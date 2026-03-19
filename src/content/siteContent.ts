@@ -1,8 +1,22 @@
-import { Testimonial } from "@/types/testimonial";
+import type { Testimonial } from "@/types/testimonial";
+import type { SiteContent } from "@/types/site-content";
 
-export const siteContent = {
+export const siteContent: SiteContent & {
+  testimonials: {
+    title: string;
+    description: string;
+    items: Testimonial[];
+  };
+  footer: Record<string, never>;
+} = {
   company: {
     name: "Company Name",
+    description:
+      "This landing page template is built for service companies that need a strong first impression, a clear offer, and a simple path for incoming leads.",
+    logo: {
+      src: "/images/logo/logo-2.svg",
+      alt: "Company logo",
+    },
   },
   meta: {
     title: "Business Landing Page Template",
@@ -21,33 +35,28 @@ export const siteContent = {
       "Explore the key capabilities, service areas, and advantages offered to support your project goals.",
     items: [
       {
-        id: 1,
         title: "Strategy-Led Approach",
-        paragraph:
+        description:
           "Position the company around clear goals, audience needs, and practical outcomes instead of generic claims.",
       },
       {
-        id: 2,
         title: "Custom Design Direction",
-        paragraph:
+        description:
           "Describe how the team shapes visual identity, page structure, and user experience for the client.",
       },
       {
-        id: 3,
         title: "Flexible Technical Delivery",
-        paragraph:
+        description:
           "Use this item for development, integrations, platform setup, or other implementation capabilities.",
       },
       {
-        id: 4,
         title: "Ongoing Support",
-        paragraph:
+        description:
           "Show that the business can handle maintenance, updates, and long-term improvements after launch.",
       },
       {
-        id: 5,
         title: "Content and Communication",
-        paragraph:
+        description:
           "Use this block for content production, editorial support, client communication, or community management.",
       },
     ],
@@ -92,11 +101,11 @@ export const siteContent = {
       price: "Price",
     },
     items: [
-      { serviceName: "Starter Landing Page", price: "$400" },
-      { serviceName: "Business Website", price: "$900" },
-      { serviceName: "Design Audit", price: "$250" },
-      { serviceName: "Frontend Development", price: "$700" },
-      { serviceName: "Monthly Support", price: "$180" },
+      { name: "Starter Landing Page", price: "$400" },
+      { name: "Business Website", price: "$900" },
+      { name: "Design Audit", price: "$250" },
+      { name: "Frontend Development", price: "$700" },
+      { name: "Monthly Support", price: "$180" },
     ],
   },
   contact: {

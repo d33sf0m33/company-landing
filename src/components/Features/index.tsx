@@ -1,16 +1,23 @@
 import SectionTitle from "../Common/SectionTitle";
 import SingleFeature from "./SingleFeature";
-import featuresData from "./featuresData";
-import { siteContent } from "@/content/siteContent";
+import { featureIcons } from "./featuresData";
+import type { SiteContent } from "@/types/site-content";
 
-const Features = () => {
+const Features = ({ content }: { content: SiteContent }) => {
+  const featuresData = content.features.items.map((item, index) => ({
+    id: index + 1,
+    icon: featureIcons[index]?.icon || featureIcons[0].icon,
+    title: item.title,
+    paragraph: item.description,
+  }));
+
   return (
     <>
       <section id="features" className="py-16 md:py-20 lg:py-28">
         <div className="container">
           <SectionTitle
-            title={siteContent.features.title}
-            paragraph={siteContent.features.description}
+            title={content.features.title}
+            paragraph={content.features.description}
             center
           />
 
