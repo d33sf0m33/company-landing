@@ -114,8 +114,5 @@ export const siteContent = {
       submitLabel: "Send Request",
     },
   },
-  footer: {
-    description:
-      "Use the CMS to replace this text with a short company summary, positioning statement, or service overview.",
-  },
+  footer: {},
 } as const;

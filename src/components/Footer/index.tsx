@@ -27,9 +27,6 @@ const Footer = () => {
                     height={30}
                   />
                 </Link>
-                <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                  {siteContent.footer.description}
-                </p>
                 <div className="flex items-center">
                   <a
                     href="/"
