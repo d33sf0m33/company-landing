@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { siteContent } from "@/content/siteContent";
 
 const Hero = () => {
   const handleContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -35,13 +36,10 @@ const Hero = () => {
             <div className="w-full px-4">
               <div className="mx-auto max-w-[800px] text-center">
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  Free and Open-Source Next.js Template for Startup & SaaS
+                  {siteContent.company.name}
                 </h1>
                 <p className="mb-12 text-base leading-relaxed! text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  Startup is free Next.js template for startups and SaaS
-                  business websites comes with all the essential pages,
-                  components, and sections you need to launch a complete
-                  business website, built-with Next 16.x and Tailwind CSS.
+                  {siteContent.hero.description}
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
@@ -49,7 +47,7 @@ const Hero = () => {
                     onClick={handleContactClick}
                     className="rounded-xs bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
                   >
-                    Submit a Request
+                    {siteContent.hero.primaryCta}
                   </Link>
                 </div>
               </div>

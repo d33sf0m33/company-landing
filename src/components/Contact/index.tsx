@@ -1,3 +1,5 @@
+import { siteContent } from "@/content/siteContent";
+
 const Contact = () => {
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
@@ -10,11 +12,10 @@ const Contact = () => {
               "
             >
               <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl">
-                Contacts
+                {siteContent.contact.title}
               </h2>
               <p className="mb-12 text-base font-medium text-body-color">
-                Tell us briefly about your project, and we will get back to you
-                to discuss the details and next steps.
+                {siteContent.contact.description}
               </p>
               <form>
                 <div className="-mx-4 flex flex-wrap">
@@ -24,11 +25,11 @@ const Contact = () => {
                         htmlFor="name"
                         className="mb-3 block text-sm font-medium text-dark dark:text-white"
                       >
-                        Your Name
+                        {siteContent.contact.fields.nameLabel}
                       </label>
                       <input
                         type="text"
-                        placeholder="How should we address you?"
+                        placeholder={siteContent.contact.fields.namePlaceholder}
                         className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                       />
                     </div>
@@ -39,11 +40,13 @@ const Contact = () => {
                         htmlFor="email"
                         className="mb-3 block text-sm font-medium text-dark dark:text-white"
                       >
-                        Contact Details
+                        {siteContent.contact.fields.contactLabel}
                       </label>
                       <input
                         type="email"
-                        placeholder="Email or phone number"
+                        placeholder={
+                          siteContent.contact.fields.contactPlaceholder
+                        }
                         className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                       />
                     </div>
@@ -54,19 +57,21 @@ const Contact = () => {
                         htmlFor="message"
                         className="mb-3 block text-sm font-medium text-dark dark:text-white"
                       >
-                        Project Details
+                        {siteContent.contact.fields.messageLabel}
                       </label>
                       <textarea
                         name="message"
                         rows={5}
-                        placeholder="Describe your request, timeline, or preferred way to contact you"
+                        placeholder={
+                          siteContent.contact.fields.messagePlaceholder
+                        }
                         className="border-stroke w-full resize-none rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                       ></textarea>
                     </div>
                   </div>
                   <div className="w-full px-4">
                     <button className="rounded-xs bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
-                      Send Request
+                      {siteContent.contact.fields.submitLabel}
                     </button>
                   </div>
                 </div>

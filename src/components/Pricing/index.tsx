@@ -1,28 +1,23 @@
 import SectionTitle from "../Common/SectionTitle";
+import { siteContent } from "@/content/siteContent";
 
-const services = [
-  { serviceName: "Landing Page Design", price: "$400" },
-  { serviceName: "Corporate Website", price: "$900" },
-  { serviceName: "UI/UX Audit", price: "$250" },
-  { serviceName: "Frontend Development", price: "$700" },
-  { serviceName: "Website Maintenance", price: "$180" },
-];
+const services = [...siteContent.pricing.items];
 
 const Pricing = () => {
   return (
     <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title="Pricing"
-          paragraph="Choose the service you need and send a request. We will confirm the scope, timing, and final estimate after reviewing your task."
+          title={siteContent.pricing.title}
+          paragraph={siteContent.pricing.description}
           center
           width="665px"
         />
 
         <div className="mx-auto max-w-4xl rounded-xs bg-white px-6 py-8 shadow-three dark:bg-gray-dark sm:px-8 sm:py-10">
           <div className="border-body-color/10 mb-6 hidden grid-cols-[1fr_auto] border-b pb-4 text-sm font-semibold tracking-[0.08em] text-body-color uppercase dark:border-white/10 sm:grid">
-            <span>Service</span>
-            <span>Price</span>
+            <span>{siteContent.pricing.labels.service}</span>
+            <span>{siteContent.pricing.labels.price}</span>
           </div>
 
           <div className="flex flex-col">
@@ -37,7 +32,7 @@ const Pricing = () => {
               >
                 <div>
                   <p className="mb-1 text-sm font-semibold tracking-[0.08em] text-body-color uppercase sm:hidden">
-                    Service
+                    {siteContent.pricing.labels.service}
                   </p>
                   <h3 className="text-xl font-semibold text-black dark:text-white">
                     {service.serviceName}
@@ -45,7 +40,7 @@ const Pricing = () => {
                 </div>
                 <div className="sm:text-right">
                   <p className="mb-1 text-sm font-semibold tracking-[0.08em] text-body-color uppercase sm:hidden">
-                    Price
+                    {siteContent.pricing.labels.price}
                   </p>
                   <p className="text-2xl font-bold text-primary">
                     {service.price}

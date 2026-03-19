@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { siteContent } from "@/content/siteContent";
 
 const Footer = () => {
   return (
@@ -27,8 +28,7 @@ const Footer = () => {
                   />
                 </Link>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer lobortis.
+                  {siteContent.footer.description}
                 </p>
                 <div className="flex items-center">
                   <a

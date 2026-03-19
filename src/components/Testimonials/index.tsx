@@ -1,33 +1,9 @@
 import { Testimonial } from "@/types/testimonial";
+import { siteContent } from "@/content/siteContent";
 import SectionTitle from "../Common/SectionTitle";
 import SingleTestimonial from "./SingleTestimonial";
 
-const testimonialData: Testimonial[] = [
-  {
-    id: 1,
-    name: "Musharof Chy",
-    content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-01.png",
-    star: 5,
-  },
-  {
-    id: 2,
-    name: "Devid Weilium",
-    content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-02.png",
-    star: 5,
-  },
-  {
-    id: 3,
-    name: "Lethium Frenci",
-    content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-03.png",
-    star: 5,
-  },
-];
+const testimonialData: Testimonial[] = [...siteContent.testimonials.items];
 
 const Testimonials = () => {
   return (
@@ -37,8 +13,8 @@ const Testimonials = () => {
     >
       <div className="container">
         <SectionTitle
-          title="Testimonials"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title={siteContent.testimonials.title}
+          paragraph={siteContent.testimonials.description}
           center
         />
 
