@@ -6,7 +6,6 @@ const testimonialData: Testimonial[] = [
   {
     id: 1,
     name: "Musharof Chy",
-    designation: "Founder @TailGrids",
     content:
       "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
     image: "/images/testimonials/auth-01.png",
@@ -15,7 +14,6 @@ const testimonialData: Testimonial[] = [
   {
     id: 2,
     name: "Devid Weilium",
-    designation: "Founder @UIdeck",
     content:
       "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
     image: "/images/testimonials/auth-02.png",
@@ -24,7 +22,6 @@ const testimonialData: Testimonial[] = [
   {
     id: 3,
     name: "Lethium Frenci",
-    designation: "Founder @Lineicons",
     content:
       "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
     image: "/images/testimonials/auth-03.png",
@@ -40,7 +37,7 @@ const Testimonials = () => {
     >
       <div className="container">
         <SectionTitle
-          title="What Our Users Says"
+          title="Testimonials"
           paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
           center
         />

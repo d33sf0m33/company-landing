@@ -71,7 +71,7 @@ const Header = () => {
       >
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
-            <div className="w-60 max-w-full px-4 xl:mr-12">
+            <div className="w-60 max-w-full px-4">
               <Link
                 href="/"
                 className={`header-logo block w-full ${
@@ -94,8 +94,8 @@ const Header = () => {
                 />
               </Link>
             </div>
-            <div className="flex w-full items-center justify-between px-4">
-              <div>
+            <div className="flex flex-1 items-center justify-end px-4 lg:justify-center">
+              <div className="lg:flex lg:flex-1 lg:justify-center">
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
@@ -141,7 +141,7 @@ const Header = () => {
                   </ul>
                 </nav>
               </div>
-              <div className="flex items-center justify-end pr-16 lg:pr-0">
+              <div className="mr-16 flex items-center lg:mr-0 lg:w-60 lg:justify-end">
                 <div>
                   <ThemeToggler />
                 </div>
