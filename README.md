@@ -19,10 +19,9 @@ and Much More ...
 | Feature             | Free | Pro |
 |---------------------|------------|----------|
 | Next.js Landing Page             | ✅ Yes      | ✅ Yes      |
-| All The Integrations - Auth, DB, Payments, Blog and many more ...             | ❌ No      | ✅ Yes |
+| All The Integrations - Auth, DB, Payments and many more ...                   | ❌ No      | ✅ Yes |
 | Homepage Variations             | 1      | 2 |
 | Additional SaaS Pages and Components             | ❌ No      | ✅ Yes |
-| Functional Blog with Sanity       | ❌ No      | ✅ Yes |
 | Use with Commercial Projects            | ✅ Yes      | ✅ Yes      |
 | Lifetime Free Updates             | ✅ Yes      | ✅ Yes |
 | Email Support       | ❌ No         | ✅ Yes       |
@@ -32,7 +31,7 @@ and Much More ...
 
 [![Startup Pro](https://raw.githubusercontent.com/NextJSTemplates/startup-nextjs/main/startup-pro.webp)](https://nextjstemplates.com/templates/saas-starter-startup)
 
-Startup Pro - Expertly crafted for fully-functional, high-performing SaaS startup websites. Comes with with Authentication, Database, Blog, and all the essential integrations necessary for SaaS business sites.
+Startup Pro - Expertly crafted for fully-functional, high-performing SaaS startup websites. Comes with with Authentication, Database, and all the essential integrations necessary for SaaS business sites.
 
 - [🚀 View Free Demo](https://startup.nextjstemplates.com/)
 
@@ -71,8 +70,6 @@ If you like the template, please star this repository to inspire the team to cre
 
 - Fix peer deps issue with Next.js 15
 - Upgrade to tailwind v4
-- Refactored blog cards for handling edge cases(text ellipsis on bio, keeping author details at the bottom etc.)
-- Re-wrote blog details page with icons separation, fallback author image and better markup.
 - Fixed duplicate key errors on homepage.
 - Separated icons on theme-switcher button, and refactored scroll-to-top button.
 
