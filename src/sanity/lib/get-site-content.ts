@@ -27,6 +27,9 @@ type LandingPageQueryResult = {
   companyDescription?: string;
   logo?: Image & {
     alt?: string;
+    asset?: {
+      _ref?: string;
+    };
   };
   features?: Array<{
     title?: string;
@@ -85,7 +88,9 @@ async function resolveCompany(): Promise<CompanyQueryResult | null> {
 
 function mapSanityContent(data: LandingPageQueryResult): SiteContent {
   const companyName = data.companyName || siteContent.company.name;
-  const logoUrl = data.logo ? urlForImage(data.logo)?.width(280).url() : null;
+  const logoUrl = data.logo?.asset?._ref
+    ? urlForImage(data.logo)?.width(280).url()
+    : null;
   const sanityFeatures =
     data.features
       ?.filter((item) => item.title && item.description)
