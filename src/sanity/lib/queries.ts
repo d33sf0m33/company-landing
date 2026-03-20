@@ -46,6 +46,11 @@ export const landingPageByCompanyQuery = groq`
     pricing[]{
       name,
       price
+    },
+    footerCompanyInfo{
+      contact,
+      email,
+      address
     }
   }
 `;

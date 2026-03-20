@@ -9,4 +9,7 @@ export default defineCliConfig({
     projectId: sanityProjectId,
     dataset: sanityDataset,
   },
+  deployment: {
+    appId: "rxzv206unb54a9s6rf5mudeg",
+  },
 });

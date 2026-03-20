@@ -127,6 +127,11 @@ async function seedLandingPage() {
       name: item.name,
       price: item.price,
     })),
+    footerCompanyInfo: {
+      contact: siteContent.footer.companyInfo.contact,
+      email: siteContent.footer.companyInfo.email,
+      address: siteContent.footer.companyInfo.address,
+    },
   };
 
   const result = await client.createOrReplace(document);

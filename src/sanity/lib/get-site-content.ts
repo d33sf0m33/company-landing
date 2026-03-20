@@ -2,7 +2,7 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import type { Image } from "sanity";
 import { siteContent } from "@/content/siteContent";
-import type { SiteContent } from "@/types/site-content";
+import type { SiteContent, SiteFooterCompanyInfo } from "@/types/site-content";
 import { sanityClient } from "./client";
 import { urlForImage } from "./image";
 import {
@@ -36,6 +36,7 @@ type LandingPageQueryResult = {
     name?: string;
     price?: string;
   }>;
+  footerCompanyInfo?: Partial<SiteFooterCompanyInfo>;
 };
 
 function buildMetaTitle(companyName: string): string {
@@ -100,6 +101,17 @@ function mapSanityContent(data: LandingPageQueryResult): SiteContent {
         name: item.name as string,
         price: item.price as string,
       })) || [];
+  const sanityFooterCompanyInfo = data.footerCompanyInfo;
+  const footerCompanyInfo =
+    sanityFooterCompanyInfo?.contact &&
+    sanityFooterCompanyInfo.email &&
+    sanityFooterCompanyInfo.address
+      ? {
+          contact: sanityFooterCompanyInfo.contact,
+          email: sanityFooterCompanyInfo.email,
+          address: sanityFooterCompanyInfo.address,
+        }
+      : siteContent.footer.companyInfo;
 
   return {
     ...siteContent,
@@ -132,6 +144,9 @@ function mapSanityContent(data: LandingPageQueryResult): SiteContent {
     pricing: {
       ...siteContent.pricing,
       items: sanityPricing.length > 0 ? sanityPricing : siteContent.pricing.items,
+    },
+    footer: {
+      companyInfo: footerCompanyInfo,
     },
   };
 }

@@ -4,6 +4,23 @@ import Link from "next/link";
 import type { SiteContent } from "@/types/site-content";
 
 const Footer = ({ content }: { content: SiteContent }) => {
+  const companyInfoItems = [
+    {
+      label: "Contact",
+      value: content.footer.companyInfo.contact,
+      href: `tel:${content.footer.companyInfo.contact.replace(/\s+/g, "")}`,
+    },
+    {
+      label: "Email",
+      value: content.footer.companyInfo.email,
+      href: `mailto:${content.footer.companyInfo.email}`,
+    },
+    {
+      label: "Address",
+      value: content.footer.companyInfo.address,
+    },
+  ];
+
   return (
     <>
       <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
@@ -20,6 +37,27 @@ const Footer = ({ content }: { content: SiteContent }) => {
                     height={30}
                   />
                 </Link>
+                <ul className="mb-8 space-y-3">
+                  {companyInfoItems.map((item) => (
+                    <li key={item.label}>
+                      <span className="mr-2 text-sm font-semibold uppercase tracking-[0.14em] text-body-color dark:text-body-color-dark">
+                        {item.label}:
+                      </span>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="text-base leading-relaxed text-black duration-300 hover:text-primary dark:text-white dark:hover:text-primary"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <span className="text-base leading-relaxed text-black dark:text-white">
+                          {item.value}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
                 <div className="flex items-center">
                   <a
                     href="/"

@@ -7,7 +7,6 @@ export const siteContent: SiteContent & {
     description: string;
     items: Testimonial[];
   };
-  footer: Record<string, never>;
 } = {
   company: {
     name: "Company Name",
@@ -123,5 +122,11 @@ export const siteContent: SiteContent & {
       submitLabel: "Send Request",
     },
   },
-  footer: {},
+  footer: {
+    companyInfo: {
+      contact: "+1 (555) 123-4567",
+      email: "hello@company.com",
+      address: "100 Market Street, Suite 500, San Francisco, CA",
+    },
+  },
 } as const;

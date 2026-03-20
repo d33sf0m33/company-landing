@@ -13,6 +13,12 @@ export type SiteImage = {
   alt: string;
 };
 
+export type SiteFooterCompanyInfo = {
+  contact: string;
+  email: string;
+  address: string;
+};
+
 export type SiteContent = {
   company: {
     name: string;
@@ -54,5 +60,8 @@ export type SiteContent = {
       messagePlaceholder: string;
       submitLabel: string;
     };
+  };
+  footer: {
+    companyInfo: SiteFooterCompanyInfo;
   };
 };

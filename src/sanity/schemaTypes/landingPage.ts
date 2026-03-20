@@ -114,6 +114,33 @@ export const landingPageType = defineType({
       ],
       validation: (rule) => rule.required().min(1),
     }),
+    defineField({
+      name: "footerCompanyInfo",
+      title: "Footer company info",
+      type: "object",
+      fields: [
+        defineField({
+          name: "contact",
+          title: "Contact",
+          type: "string",
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: "email",
+          title: "Email",
+          type: "string",
+          validation: (rule) => rule.required().email(),
+        }),
+        defineField({
+          name: "address",
+          title: "Address",
+          type: "text",
+          rows: 3,
+          validation: (rule) => rule.required(),
+        }),
+      ],
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: {
